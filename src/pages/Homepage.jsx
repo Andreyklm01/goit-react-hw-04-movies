@@ -18,10 +18,17 @@ class Homepage extends Component {
   }
 
   render() {
+    console.log(this.props.match.url);
     return (
       <ul>
         {this.state.movies.map(movie => {
-          return <li key={movie.id}>{movie.title || movie.name}</li>;
+          return (
+            <li key={movie.id}>
+              <Link to={`/MovieDetailsPage/${movie.id}`}>
+                {movie.title || movie.name}
+              </Link>
+            </li>
+          );
         })}
       </ul>
     );
