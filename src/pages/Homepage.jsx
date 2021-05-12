@@ -24,9 +24,7 @@ class Homepage extends Component {
         {this.state.movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`/MovieDetailsPage/${movie.id}`}>
-                {movie.title || movie.name}
-              </Link>
+              <Link to={`movies/${movie.id}`}>{movie.title || movie.name}</Link>
             </li>
           );
         })}

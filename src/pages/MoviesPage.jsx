@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_KEY } from '../api-service/apiService';
 import { BASE_URL } from '../api-service/apiService';
@@ -46,7 +47,11 @@ class MoviesPage extends Component {
         </form>
         <ul>
           {this.state.searchMovies.map(movie => {
-            return <li key={movie.id}>{movie.title || movie.name}</li>;
+            return (
+              <Link to={`/movies/${movie.id}`}>
+                <li key={movie.id}>{movie.title || movie.name}</li>
+              </Link>
+            );
           })}
         </ul>
       </div>

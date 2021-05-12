@@ -2,22 +2,24 @@ import { Component } from 'react';
 import axios from 'axios';
 import { API_KEY } from '../api-service/apiService';
 import { BASE_URL } from '../api-service/apiService';
+import Cast from './Cast';
+import Reviews from './Reviews';
+
 class MovieDetailsPage extends Component {
   state = {
     movie: [],
     genres: [],
   };
 
-  getMovie = event => {
-    event.preventDefault();
-    const id = '567189';
+  componentDidMount() {
+    const id = this.props.match.params.movieId;
     axios.get(`${BASE_URL}movie/${id}?api_key=${API_KEY}`).then(response => {
       return this.setState({
         movie: response.data,
         genres: response.data.genres,
       });
     });
-  };
+  }
 
   render() {
     console.log(this.state.movie);
@@ -30,9 +32,7 @@ class MovieDetailsPage extends Component {
     } = this.state.movie;
     return (
       <div>
-        <button type="submit" onClick={this.getMovie}>
-          Click
-        </button>
+        <button type="button">Go Back</button>
         <img
           src={`https://image.tmdb.org/t/p/w300${backdrop_path}`}
           alt={title}
@@ -49,7 +49,10 @@ class MovieDetailsPage extends Component {
           ))}
         </ul>
         <p>Aditional infomation</p>
-        //Cast //Reviews
+        <div>
+          <Cast id={this.props.match.params.movieId} />
+          <Reviews id={this.props.match.params.movieId} />
+        </div>
       </div>
     );
   }

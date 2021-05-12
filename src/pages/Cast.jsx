@@ -12,7 +12,7 @@ class Cast extends Component {
     event.preventDefault();
     const id = '567189';
     axios
-      .get(`${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`)
+      .get(`${BASE_URL}movie/${this.props.id}/credits?api_key=${API_KEY}`)
       .then(response => {
         return this.setState({
           cast: response.data.cast,

@@ -3,9 +3,9 @@ import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import MoviesPage from './pages/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
-import Cast from './pages/Cast';
-import Reviews from './pages/Reviews';
+
 import NotFoundView from './pages/NotFoundView';
+import routes from './routes/routes';
 
 class App extends Component {
   state = {
@@ -21,7 +21,7 @@ class App extends Component {
               exact
               className="nav-link"
               activeClassName="nav-link--active"
-              to="/"
+              to={routes.HomePage}
             >
               Home
             </NavLink>
@@ -30,20 +30,18 @@ class App extends Component {
             <NavLink
               className="nav-link"
               activeClassName="nav-link--active"
-              to="/moviesPage"
+              to={routes.MoviesPage}
             >
               Movies
             </NavLink>
           </li>
         </ul>
         <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/moviesPage" component={MoviesPage} />
-          <Route path="/MovieDetailsPage" component={MovieDetailsPage} />
+          <Route exact path={routes.HomePage} component={Homepage} />
+          <Route exact path={routes.MoviesPage} component={MoviesPage} />
+          <Route path={routes.MovieDetailsPage} component={MovieDetailsPage} />
           <Route component={NotFoundView} />
         </Switch>
-        <Cast />
-        <Reviews />
       </>
     );
   }

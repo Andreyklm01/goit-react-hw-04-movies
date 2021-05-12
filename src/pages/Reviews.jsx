@@ -10,9 +10,8 @@ class Reviews extends Component {
 
   getReviews = event => {
     event.preventDefault();
-    const id = '567189';
     axios
-      .get(`${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`)
+      .get(`${BASE_URL}movie/${this.props.id}/reviews?api_key=${API_KEY}`)
       .then(response => {
         return this.setState({
           reviews: response.data.results,
