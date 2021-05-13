@@ -8,9 +8,7 @@ class Cast extends Component {
     cast: [],
   };
 
-  getCast = event => {
-    event.preventDefault();
-    const id = '567189';
+  componentDidMount() {
     axios
       .get(`${BASE_URL}movie/${this.props.id}/credits?api_key=${API_KEY}`)
       .then(response => {
@@ -18,14 +16,11 @@ class Cast extends Component {
           cast: response.data.cast,
         });
       });
-  };
+  }
 
   render() {
     return (
       <div>
-        <button type="submit" onClick={this.getCast}>
-          Cast
-        </button>
         <ul>
           {this.state.cast.map(actor => {
             return (
