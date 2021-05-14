@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { API_KEY } from '../api-service/apiService';
 import { BASE_URL } from '../api-service/apiService';
@@ -48,7 +48,14 @@ class MoviesPage extends Component {
         <ul>
           {this.state.searchMovies.map(movie => {
             return (
-              <Link to={`/movies/${movie.id}`}>
+              <Link
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: {
+                    from: this.props.location,
+                  },
+                }}
+              >
                 <li key={movie.id}>{movie.title || movie.name}</li>
               </Link>
             );
@@ -59,4 +66,4 @@ class MoviesPage extends Component {
   }
 }
 
-export default MoviesPage;
+export default withRouter(MoviesPage);

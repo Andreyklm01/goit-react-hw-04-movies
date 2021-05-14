@@ -1,11 +1,11 @@
-//Доделать кнопку назад
+//Доделать кнопку назад +++
 //Добавить lazyLoad
 // Сделать рефакторинг
 // Добавить минимальніе стили
 //обработать 404
 
 import { Component } from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { API_KEY } from '../api-service/apiService';
 import { BASE_URL } from '../api-service/apiService';
@@ -29,13 +29,13 @@ class MovieDetailsPage extends Component {
     });
   }
 
-  handleClick = () => {
+  handleGoBack = () => {
     const { location, history } = this.props;
 
     if (location.state && location.state.from) {
       return history.push(location.state.from);
     }
-    history.push(routes.HomePage);
+    history.replace(routes.HomePage);
   };
 
   render() {
@@ -49,7 +49,7 @@ class MovieDetailsPage extends Component {
     } = this.state.movie;
     return (
       <div>
-        <button type="button" onClick={this.handleClick}>
+        <button type="button" onClick={this.handleGoBack}>
           Go Back
         </button>
 
@@ -74,9 +74,9 @@ class MovieDetailsPage extends Component {
           <NavLink
             to={{
               pathname: `${match.url}/cast`,
-              // state: {
-              //   from: location.state,
-              // },
+              state: {
+                from: location.state && location.state.from,
+              },
             }}
           >
             <span>Cast</span>
@@ -85,9 +85,9 @@ class MovieDetailsPage extends Component {
           <NavLink
             to={{
               pathname: `${match.url}/reviews`,
-              // state: {
-              //   from: location.state,
-              // },
+              state: {
+                from: location.state && location.state.from,
+              },
             }}
           >
             <span>Reviews</span>
@@ -110,4 +110,4 @@ class MovieDetailsPage extends Component {
   }
 }
 
-export default MovieDetailsPage;
+export default withRouter(MovieDetailsPage);
