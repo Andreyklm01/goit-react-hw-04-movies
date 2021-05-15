@@ -1,10 +1,11 @@
 import { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
-import Homepage from './pages/Homepage';
-import MoviesPage from './pages/MoviesPage';
-import MovieDetailsPage from './pages/MovieDetailsPage';
+import { Route, Switch } from 'react-router-dom';
+import Homepage from './pages/Homepage/Homepage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
+import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
+import NavBar from './components/NavBar/NavBar';
 
-import NotFoundView from './pages/NotFoundView';
+import NotFoundView from './pages/NotFoundView/NotFoundView';
 import routes from './routes/routes';
 
 class App extends Component {
@@ -15,27 +16,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <ul>
-          <li>
-            <NavLink
-              exact
-              className="nav-link"
-              activeClassName="nav-link--active"
-              to={routes.HomePage}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-link"
-              activeClassName="nav-link--active"
-              to={routes.MoviesPage}
-            >
-              Movies
-            </NavLink>
-          </li>
-        </ul>
+        <NavBar />
         <Switch>
           <Route exact path={routes.HomePage} component={Homepage} />
           <Route exact path={routes.MoviesPage} component={MoviesPage} />

@@ -1,4 +1,7 @@
 import s from './Navbar.module.css';
+import routes from '../../routes/routes';
+import { NavLink } from 'react-router-dom';
+
 const NavBar = () => (
   <ul>
     <li>
@@ -6,7 +9,7 @@ const NavBar = () => (
         exact
         className={s.navLink}
         activeClassName={s.navLinkActive}
-        to="/"
+        to={routes.HomePage}
       >
         Home
       </NavLink>
@@ -15,7 +18,7 @@ const NavBar = () => (
       <NavLink
         className={s.navLink}
         activeClassName={s.navLinkActive}
-        to="/moviesPage"
+        to={routes.MoviesPage}
       >
         Movies
       </NavLink>
