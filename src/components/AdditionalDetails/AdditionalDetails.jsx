@@ -1,13 +1,21 @@
+import { Suspense, lazy } from 'react';
 import { Route, Switch, NavLink, withRouter } from 'react-router-dom';
-import Cast from '../../pages/Cast/Cast';
-// import NotFoundView from '../pages/NotFoundView';
-import Reviews from '../../pages/Reviews/Reviews';
+import s from './AdditionalDetails.module.css';
+
+const Cast = lazy(() =>
+  import('../../pages/Cast/Cast' /*webpackChunkName: "cast"*/),
+);
+const Reviews = lazy(() =>
+  import('../../pages/Reviews/Reviews' /*webpackChunkName: "reviews"*/),
+);
 
 const AdditionalDetails = ({ url, state, movieId }) => (
   <>
-    <h3>Aditional infomation</h3>
-    <div>
+    <h3 className={s.title}>Aditional infomation</h3>
+    <div className={s.list}>
       <NavLink
+        className={s.navLink}
+        activeClassName={s.active}
         to={{
           pathname: `${url}/cast`,
           state: {
@@ -15,10 +23,12 @@ const AdditionalDetails = ({ url, state, movieId }) => (
           },
         }}
       >
-        <span>Cast</span>
+        Cast
       </NavLink>
 
       <NavLink
+        className={s.navLink}
+        activeClassName={s.active}
         to={{
           pathname: `${url}/reviews`,
           state: {
@@ -26,14 +36,19 @@ const AdditionalDetails = ({ url, state, movieId }) => (
           },
         }}
       >
-        <span>Reviews</span>
+        Reviews
       </NavLink>
     </div>
 
-    <Switch>
-      <Route path={`${url}/cast`} render={() => <Cast id={movieId} />} />
-      <Route path={`${url}/reviews`} render={() => <Reviews id={movieId} />} />
-    </Switch>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route path={`${url}/cast`} render={() => <Cast id={movieId} />} />
+        <Route
+          path={`${url}/reviews`}
+          render={() => <Reviews id={movieId} />}
+        />
+      </Switch>
+    </Suspense>
   </>
 );
 

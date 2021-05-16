@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  border-bottom: 1px solid black;
+}
+.item {
+  font-size: 23px;
+  font-weight: bold;
+}
+.item + .item {
+  margin-left: 20px;
+}
+
+.navLink {
+  color: black;
+}
+
+.navLinkActive {
+  color: red;
+}

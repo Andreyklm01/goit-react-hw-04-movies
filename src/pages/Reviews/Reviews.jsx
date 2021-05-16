@@ -2,6 +2,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import { API_KEY } from '../../api-service/apiService';
 import { BASE_URL } from '../../api-service/apiService';
+import s from './Reviews.module.css';
 
 class Reviews extends Component {
   state = {
@@ -22,7 +23,7 @@ class Reviews extends Component {
     return (
       <div>
         {this.state.reviews.length !== 0 ? (
-          <ul>
+          <ul className={s.list}>
             {this.state.reviews.map(review => {
               const avatarPath = review.author_details.avatar_path;
               if (!avatarPath) return '';
@@ -31,9 +32,16 @@ class Reviews extends Component {
               const avatar = avatarAdapter.join('');
 
               return (
-                <li key={review.id}>
-                  <img src={avatar} alt={review.author} width="40" />
-                  <h3>{review.author}</h3>
+                <li key={review.id} className={s.item}>
+                  <div className={s.autor}>
+                    <img
+                      src={avatar}
+                      alt={review.author}
+                      width="40"
+                      height="40"
+                    />
+                    <h3 className={s.name}>{review.author}</h3>
+                  </div>
                   <p>{review.content}</p>
                   <p>{review.created_at}</p>
                 </li>
@@ -41,7 +49,7 @@ class Reviews extends Component {
             })}
           </ul>
         ) : (
-          <h2>No rewievs</h2>
+          <h2 className={s.subtitle}>No reviews</h2>
         )}
       </div>
     );

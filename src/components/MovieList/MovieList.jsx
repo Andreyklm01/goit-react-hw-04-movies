@@ -1,11 +1,12 @@
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import s from './MovieList.module.css';
 
 const MovieList = ({ movies, location }) => (
   <ul>
     {movies.map(movie => {
       return (
-        <li key={movie.id}>
+        <li key={movie.id} className={s.item}>
           <Link
             to={{
               pathname: `/movies/${movie.id}`,

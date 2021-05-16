@@ -3,8 +3,8 @@ import routes from '../../routes/routes';
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => (
-  <ul>
-    <li>
+  <ul className={s.list}>
+    <li className={s.item}>
       <NavLink
         exact
         className={s.navLink}
@@ -14,7 +14,7 @@ const NavBar = () => (
         Home
       </NavLink>
     </li>
-    <li>
+    <li className={s.item}>
       <NavLink
         className={s.navLink}
         activeClassName={s.navLinkActive}

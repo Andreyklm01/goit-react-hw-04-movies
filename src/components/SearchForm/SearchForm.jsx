@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import s from './SearchForm.module.css';
 
 const SearchForm = ({ onSubmit, searchQuery, onChange }) => (
   <form action="" onSubmit={onSubmit}>
     <input
+      className={s.input}
       type="text"
       value={searchQuery}
       autoComplete="off"
@@ -10,7 +12,9 @@ const SearchForm = ({ onSubmit, searchQuery, onChange }) => (
       placeholder="Search movie"
       onChange={onChange}
     />
-    <button type="submit">Search</button>
+    <button type="submit" className={s.button}>
+      Search
+    </button>
   </form>
 );
 

@@ -13,16 +13,14 @@ class MovieDetailsPage extends Component {
     genres: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const id = this.props.match.params.movieId;
-    await axios
-      .get(`${BASE_URL}movie/${id}?api_key=${API_KEY}`)
-      .then(({ data }) => {
-        return this.setState({
-          movie: data,
-          genres: data.genres,
-        });
+    axios.get(`${BASE_URL}movie/${id}?api_key=${API_KEY}`).then(({ data }) => {
+      return this.setState({
+        movie: data,
+        genres: data.genres,
       });
+    });
   }
 
   handleGoBack = () => {
